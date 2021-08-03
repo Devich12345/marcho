@@ -716,6 +716,36 @@ footer {
     }
 }
 
+.page-404 {
+    padding: 110px 0 120px;
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center
+    }
+    &__content {
+        max-width: 570px;
+        width: 100%;
+    }
+    &__title {
+        color: #28384f;
+        margin-bottom: 40px;
+        @extend %roboto-700;
+        font-size: 48px;
+    }
+    &__text {
+        margin-bottom: 55px;
+        max-width: 470px;
+    }
+    &__link {
+        background-color: $accent;
+        text-transform: uppercase;
+        color: #fff;
+        padding: 14px 35px;
+        @extend %roboto-400;
+        box-shadow: 0px 5px 25px 0px rgba(254, 62, 87, 0.35);
+    }
+}
 
 
 
