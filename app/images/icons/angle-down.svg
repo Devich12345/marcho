@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="10" height="5" viewBox="0 0 10 5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #8d8d8d;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="angle_down" data-name="angle down" class="cls-1" d="M1396.98,620a0.728,0.728,0,0,1-.49-0.179l-4.32-3.772a0.567,0.567,0,0,1,0-.869,0.787,0.787,0,0,1,1,0l3.81,3.337,3.82-3.336a0.771,0.771,0,0,1,.99,0,0.553,0.553,0,0,1,0,.868l-4.31,3.772a0.767,0.767,0,0,1-.5.179h0Zm0,0" transform="translate(-1392 -615)"/>
+</svg>
