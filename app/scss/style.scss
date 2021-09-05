@@ -120,6 +120,9 @@ footer {
         font-size: 22px;
         line-height: 1;
     }
+    &__form {
+        display: flex;
+    }
     &__link {
         margin-bottom: 14px;
         display: block;
@@ -131,6 +134,7 @@ footer {
         background-color: #fff;
         max-width: 320px;
         width: 100%;
+        margin-right: 3px;
         border: none;
         padding: 12px 10px 12px 15px;
         box-shadow: 0px 7px 20px 0px rgba(192, 192, 192, 0.3);
