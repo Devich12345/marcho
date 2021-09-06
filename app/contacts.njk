@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/contacts.min.css">
+</head>
+
+<body>
+    {% include 'app/module/_header/_header.html' %}
+
+    <main class="main">
+        {% include 'app/module/_top/_top.html' %}
+
+        <section class="map">
+            <div class="container">
+                <div id="map"></div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <div class="container">
+                <div class="contact__inner">
+                    <div class="contact__info">
+                        <h3 class="contact__info-title">
+                            Feel Free Don’t
+                            Hesitate To
+                            Contact With Us
+                        </h3>
+                        <p class="contact__info-text">
+                            Lorem ipsum dolor sit amet, consectetur adingn elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
+                            maecnaacnrao cumsan lacus vel facilisis.
+                        </p>
+                        <ul class="contact__info-list">
+                            <li class="contact__info-item">
+                                <a class="contact__info-phone" href="tel:+01234567896">+0-123-456-7896</a>
+                                <a class="contact__info-phone" href="tel:+01234567896">+0-123-456-7896</a>
+                            </li>
+                            <li class="contact__info-item contact__info-item--location">
+                                Ranlon Market 789 Road,<br>
+                                Market Street, Newyork
+                            </li>
+                            <li class="contact__info-item contact__info-item--email">
+                                <div>yourmailaddress@gmail.com</div>
+                                <div>companymail@gmail.com</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <form class="contact__form" action="#">
+                        <p class="contact__form-title">Contact Form</p>
+                        <div class="contact__form-box">
+                            <input class="contact__form-input" type="text" placeholder="Your Name">
+                            <input class="contact__form-input" type="text" placeholder="Your E-mail Address">
+                        </div>
+                        <input class="contact__form-input" type="text" placeholder="Subject">
+                        <textarea class="contact__form-textarea" placeholder="Massage here"></textarea>
+                        <button class="contact__form-btn" type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    {% include 'app/module/_footer/_footer.html' %}
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=&v=weekly" async></script>
+    <script>
+        let map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 40.716142051527044, lng: -74.0030342461987 },
+                zoom: 13,
+                styles: [
+                    { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                    { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                    { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+                    {
+                        featureType: "administrative.locality",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#d59563" }],
+                    },
+                    {
+                        featureType: "poi",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#d59563" }],
+                    },
+                    {
+                        featureType: "poi.park",
+                        elementType: "geometry",
+                        stylers: [{ color: "#263c3f" }],
+                    },
+                    {
+                        featureType: "poi.park",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#6b9a76" }],
+                    },
+                    {
+                        featureType: "road",
+                        elementType: "geometry",
+                        stylers: [{ color: "#38414e" }],
+                    },
+                    {
+                        featureType: "road",
+                        elementType: "geometry.stroke",
+                        stylers: [{ color: "#212a37" }],
+                    },
+                    {
+                        featureType: "road",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#9ca5b3" }],
+                    },
+                    {
+                        featureType: "road.highway",
+                        elementType: "geometry",
+                        stylers: [{ color: "#746855" }],
+                    },
+                    {
+                        featureType: "road.highway",
+                        elementType: "geometry.stroke",
+                        stylers: [{ color: "#1f2835" }],
+                    },
+                    {
+                        featureType: "road.highway",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#f3d19c" }],
+                    },
+                    {
+                        featureType: "transit",
+                        elementType: "geometry",
+                        stylers: [{ color: "#2f3948" }],
+                    },
+                    {
+                        featureType: "transit.station",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#d59563" }],
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "geometry",
+                        stylers: [{ color: "#17263c" }],
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "labels.text.fill",
+                        stylers: [{ color: "#515c6d" }],
+                    },
+                    {
+                        featureType: "water",
+                        elementType: "labels.text.stroke",
+                        stylers: [{ color: "#17263c" }],
+                    },
+                ],
+            });
+        }
+    </script>
+    <script scr="js/main.min.js"></script>
+</body>
+
+</html>

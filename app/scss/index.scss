@@ -1,0 +1,15 @@
+@import 'vars';
+@import 'fonts';
+@import 'reset';
+@import 'node_modules/slick-carousel/slick/slick.scss';
+@import 'node_modules/@fancyapps/fancybox/dist/jquery.fancybox';
+@import 'node_modules/rateyo/src/jquery.rateyo';
+@import 'global';
+@import '../module/_header/header';
+@import '../module/_footer/footer';
+@import '../module/_top-slider/top-slider';
+@import '../module/_categories-info/_categories-info';
+@import '../module/_video-fashion/_video-fashion';
+@import '../module/_product/_product';
+@import '../module/_promo/_promo';
+@import '../module/_blog/blog';

@@ -1,19 +1,21 @@
 const { src, dest, watch, parallel, series } = require('gulp');
 
-const scss          = require('gulp-sass')(require('sass'));
-const concat        = require('gulp-concat');
-const browserSync   = require('browser-sync').create();
-const ssi           = require('browsersync-ssi'); //подключаем модуль в gulpfile.js что раб компонент
-const buildssi      = require('gulp-ssi');
-const uglify        = require('gulp-uglify-es').default;
-const autoprefixer  = require('gulp-autoprefixer');
-const imagemin      = require('gulp-imagemin');
+const scss            = require('gulp-sass')(require('sass'));
+const concat          = require('gulp-concat');
+const browserSync     = require('browser-sync').create();
+const ssi             = require('browsersync-ssi'); //подключаем модуль в gulpfile.js что раб компонент
+const buildssi        = require('gulp-ssi');
+const uglify          = require('gulp-uglify-es').default;
+const autoprefixer    = require('gulp-autoprefixer');
+const imagemin        = require('gulp-imagemin');
+const rename          = require('gulp-rename');
+const nunjucksRender  = require('gulp-nunjucks-render');
 // const babel = require("gulp-babel");  //переводит ES6 в старый обычный JS
 // В gulpfile объявляем плагины:
-const replace       = require('gulp-replace'); //фиксинг некоторых багов, Однако у данного плагина один баг - иногда он преобразовывает символ ‘>’ в кодировку '&gt;'
-const cheerio       = require('gulp-cheerio');// удаление лишних атрибутов из svg
-const sprite        = require('gulp-svg-sprite');// создание спрайта
-const del           = require('del');
+const replace         = require('gulp-replace'); //фиксинг некоторых багов, Однако у данного плагина один баг - иногда он преобразовывает символ ‘>’ в кодировку '&gt;'
+const cheerio         = require('gulp-cheerio');// удаление лишних атрибутов из svg
+const sprite          = require('gulp-svg-sprite');// создание спрайта
+const del             = require('del');
 
  // компоненты. доработываем функцию browsersync()
 function browsersync() {
@@ -101,16 +103,26 @@ function scripts() {
 
 }
 
+function nunjucks() {
+  return src('app/*.njk')
+    .pipe(nunjucksRender())
+    .pipe(dest('app'))
+    .pipe(browserSync.stream())
+}
+
 function styles() {
   return src([
-      'node_modules/slick-carousel/slick/slick.scss',
-      'node_modules/rateyo/src/jquery.rateyo.css',
-      'node_modules/ion-rangeslider/css/ion.rangeSlider.css',
-      'node_modules/jquery-form-styler/dist/jquery.formstyler.css',
-      'app/scss/style.scss'
+      // 'node_modules/slick-carousel/slick/slick.scss',
+      // 'node_modules/rateyo/src/jquery.rateyo.css',
+      // 'node_modules/ion-rangeslider/css/ion.rangeSlider.css',
+      // 'node_modules/jquery-form-styler/dist/jquery.formstyler.css',
+      'app/scss/*.scss'
       ])
     .pipe(scss({ outputStyle: 'compressed' })) //сжимает файл expanded  не сжатый
-    .pipe(concat('style.min.css')) //переименовывает файлы 
+    // .pipe(concat()) //переименовывает файлы 
+    .pipe(rename({
+      suffix : '.min'
+    }))
     .pipe(autoprefixer({
       overrideBrowserslist: ['last 10 version'],
       grid: true
@@ -147,8 +159,9 @@ function buildhtml() {
 }
 
 function watching() {
-  watch(['app/scss/**/*.scss'], styles); //следит за папкой scss(вложеные папки)
+  watch(['app/**/*.scss'], styles); //следит за папкой scss(вложеные папки)
   watch(['app/js/main.js', '!app/js/main.min.js'], scripts);
+  watch(['app/*.njk'], nunjucks);
   watch(['app/**/*.html']).on('change', browserSync.reload);
   watch(['app/images/sprite/*.svg'], svgSprite); //следим за спрайтами - указываем путь
 }
@@ -158,6 +171,7 @@ exports.watching    = watching;
 exports.browsersync = browsersync;
 exports.scripts     = scripts;
 exports.images      = images;
+exports.nunjucks    = nunjucks;
 exports.cleanDist   = cleanDist;
 exports.svgSprite   = svgSprite; //экспортируем
 
@@ -165,4 +179,4 @@ exports.svgSprite   = svgSprite; //экспортируем
 exports.build = series(cleanDist, images, build, buildhtml);
 
 
-exports.default = parallel(css, styles, scripts, svgSprite, browsersync, watching);
+exports.default = parallel(nunjucks, css, styles, scripts, svgSprite, browsersync, watching);
